@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-extract_css_materials.py
+extract_bsp_materials.py
 
-Extracts materials from a CS:S original map BSP pakfile and creates
+Extracts materials from original map BSP pakfile and creates
 an addon that clients can install to see original textures on stripped maps.
 
 Usage:
-    python extract_css_materials.py "path/to/original/cs_assault.bsp" "output_addon_folder"
+    python extract_materials.py "path/to/original/cs_assault.bsp" "output_addon_folder"
 """
 
 import io
@@ -60,7 +60,6 @@ def extract_materials_to_addon(bsp_path: Path, output_dir: Path, quiet=False):
                 print(f"  Found {len(material_files)} material files")
             
             # Extract to addon structure - keep VMTs as-is with includes
-            # Client must have CS:S mounted for includes to work
             for file_path in material_files:
                 content = zf.read(file_path)
                 out_path = output_dir / file_path
@@ -70,7 +69,7 @@ def extract_materials_to_addon(bsp_path: Path, output_dir: Path, quiet=False):
         # Create addon.json
         map_name = bsp_path.stem
         addon_json = output_dir / "addon.json"
-        addon_json.write_text(f'''{{\n    "title": "CS:S {map_name} Materials",\n    "type": "effects",\n    "tags": [ "scenic" ]\n}}''')
+        addon_json.write_text(f'''{{\n    "title": "{map_name} Materials",\n    "type": "effects",\n    "tags": [ "scenic" ]\n}}''')
         
         if not quiet:
             print(f"  ✓ Created: {output_dir.name}/")
@@ -84,8 +83,8 @@ def extract_materials_to_addon(bsp_path: Path, output_dir: Path, quiet=False):
 
 def main(argv):
     if len(argv) != 3:
-        print("Usage: python extract_css_materials.py original.bsp output_addon_folder")
-        print("       python extract_css_materials.py 'input/*.bsp' 'output/css_*_materials'")
+        print("Usage: python extract_bsp_materials.py original.bsp output_addon_folder")
+        print("       python extract_bsp_materials.py 'input/*.bsp' 'output/*_materials'")
         return 2
     
     in_pattern = argv[1]
@@ -112,7 +111,7 @@ def main(argv):
         success = 0
         for in_file in in_files:
             print(f"Processing: {in_file.name}")
-            addon_name = f"css_{in_file.stem}_materials"
+            addon_name = f"{in_file.stem}_materials"
             addon_dir = out_base / addon_name
             
             if extract_materials_to_addon(in_file, addon_dir, quiet=False):
