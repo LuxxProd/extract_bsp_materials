@@ -18,7 +18,7 @@ A Python tool to extract materials from BSP files. This restores original textur
 ### Extract a Single Map
 
 ```bash
-python extract_bsp_materials.py "C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Source\cstrike\maps\cs_assault.bsp" "C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod\addons\css_cs_assault_materials"
+python extract_materials.py "C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Source\cstrike\maps\cs_assault.bsp" "C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod\addons\css_cs_assault_materials"
 ```
 
 This creates an addon folder with the following structure:
@@ -32,7 +32,7 @@ css_cs_assault_materials/
 ### Batch Extract All Maps
 
 ```bash
-python extract_bsp_materials.py "C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Source\cstrike\maps\*.bsp" "C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod\addons\css_*_materials"
+python extract_materials.py "C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Source\cstrike\maps\*.bsp" "C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\garrysmod\addons\css_*_materials"
 ```
 
 This processes all BSP files in the maps folder and creates individual folders for each map.
