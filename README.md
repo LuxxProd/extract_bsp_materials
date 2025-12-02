@@ -1,6 +1,6 @@
 # extract_bsp_materials
 
-A Python tool to extract materials from Counter-Strike: Source BSP files. This restores original textures on stripped maps by extracting materials from the original CS:S map files.
+A Python tool to extract materials from BSP files. This restores original textures on stripped maps by extracting materials from the original map files.
 
 ## Features
 
